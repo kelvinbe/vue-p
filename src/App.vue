@@ -1,26 +1,75 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app :theme="theme">
+    <div class="bg-img"></div>
+    <v-main>
+      <Form />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Form from "./components/Form.vue";
+import { ref } from "vue";
+import {store} from './store.js'
+import { useTheme } from 'vuetify'
+
 
 export default {
-  name: 'App',
+  setup() {
+  const theme = useTheme() 
+
+    return {
+    };
+  },
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Form,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.bg-img {
+  min-height: 200px;
 }
+
+
+@media screen and (min-device-width: 376px) and (prefers-color-scheme: light) {
+  .bg-img {
+    background-image: url("./assets/bglightdesk.jpg");
+    min-height: 300px;
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  .bg-img {
+    background-image: url("./assets/bgdarkmob.jpg");
+  }
+}
+
+@media screen and (prefers-color-scheme: light) {
+  .bg-img {
+    background-image: url("./assets/bglightmob.jpg");
+  }
+}
+
+@media screen and (min-device-width: 376px) and (prefers-color-scheme: light) {
+  .bg-img {
+    background-image: url("./assets/bglightdesk.jpg");
+    min-height: 300px;
+  }
+}
+@media screen and (min-device-width: 376px) and (prefers-color-scheme: dark) {
+  .bg-img {
+    background-image: url("./assets/bgdarkdesk.jpg");
+    min-height: 300px;
+  }
+}
+
+/* @media screen and (min-device-width: 376px)
+ {
+  .bg-img {
+    background-image: url('./assets/bglightdesk.jpg');
+  }
+} */
 </style>
